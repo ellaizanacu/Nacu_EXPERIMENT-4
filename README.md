@@ -22,13 +22,16 @@ Filter out students with **Math < 70** and **Hometown = Visayas**, and create a 
 | S22  | Female | Communication   | 64   |
 
 #### **Code Breakdown**:
-1. **Function Used**: `data = pd.read_excel('board2.xlsx')`  
+1. **Function Used**: `import pandas as pd`  
+   **Description**: Imports the pandas library to work with data in DataFrame format.
+
+2. **Function Used**: `data = pd.read_excel('board2.xlsx')`  
    **Description**: Reads the Excel file into a pandas DataFrame.
 
-2. **Function Used**:  `visayas_df = data[(data['Hometown'] == 'Visayas') & (data['Math'] < 70)][['Name', 'Gender', 'Track', 'Math']]` 
+3. **Function Used**:  `visayas_df = data[(data['Hometown'] == 'Visayas') & (data['Math'] < 70)][['Name', 'Gender', 'Track', 'Math']]` 
    **Description**: Filters rows with `Math < 70` and `Hometown = Visayas`, and selects specific columns.
 
-3. **Function Used**: `visayas_df`  
+4. **Function Used**: `visayas_df`  
    **Description**: Outputs the filtered DataFrame.
 
 #### **Conclusion**:  
@@ -103,23 +106,62 @@ Generate various visualizations to show how different features contribute to the
 
 #### **Code Breakdown**:
 
-1. **Function Used**: `plt.figure(figsize=(10, 6))`  
+1. **Function Used**: `import seaborn as sns` 
+   **Description**: Imports the seaborn library for visualization.
+
+2. **Function Used**: `import matplotlib.pyplot as plt`   
+   **Description**: Imports matplotlib's pyplot for plotting graphs.
+
+3. **Function Used**: `plt.figure(figsize=(10, 6))`  
    **Description**: Creates a figure for the plot with specific dimensions.
 
-2. **Function Used**: `sns.barplot(x='Track', y='Average', hue='Gender', data=data)`  
+4. **Function Used**: `sns.barplot(x='Track', y='Average', hue='Gender', data=data)`  
    **Description**: Plots a bar chart comparing average grades across tracks and genders.
 
-3. **Function Used**: `plt.show()`  
+5. **Function Used**: `plt.title('Average Grade by Track and Gender')`    
+   **Description**: Sets the title of the plot.
+
+6. **Function Used**: `plt.show()`  
    **Description**: Displays the generated plot.
 
-4. **Function Used**: `sns.catplot(data=data, x='Track', y='Average', hue='Gender', col='Hometown', kind='bar', ...)`  
+7. **Function Used**: `sns.barplot(x='Hometown', y='Average', hue='Track', data=data)`  
+   **Description**: Plots a bar chart comparing average grades by hometown and track.
+
+8. **Function Used**: `plt.title('Average Grade by Hometown and Track')`  
+   **Description**: Sets the title of the plot.
+
+9. **Function Used**: `g = sns.catplot(data=data, x='Track', y='Average', hue='Gender', col='Hometown', kind='bar', height=6, aspect=1.2, palette='muted')`  
    **Description**: Creates a FacetGrid bar plot for each Hometown, comparing tracks and average grades.
 
-5. **Function Used**: `sns.scatterplot(x='Electronics', y='Average', hue='Gender', style='Track', data=data, s=100)`  
-   **Description**: Creates a scatter plot to visualize the relationship between Electronics scores and Average grades.
+10. **Function Used**: `g.fig.suptitle('Comparison of Average Grades by Track, Gender, and Hometown', y=1.05, fontsize=16)`  
+    **Description**: Adds a title to the entire FacetGrid.
 
-6. **Function Used**: `sns.boxplot(x='Track', y='Average', hue='Gender', data=data)`   
-   **Description**: Displays a box plot showing the spread of Average grades across different tracks.
+11. **Function Used**: `g.set_axis_labels('College Track', 'Average Grade')`  
+    **Description**: Sets axis labels for the FacetGrid.
+
+12. **Function Used**: `g.add_legend(title='Gender')`    
+    **Description**: Adds a legend to the plot.
+
+13. **Function Used**: `plt.figure(figsize=(10, 6))`  
+    **Description**: Creates a new figure for the scatter plot.
+
+14. **Function Used**: `sns.scatterplot(x='Electronics', y='Average', hue='Gender', style='Track', data=data, s=100)`   
+    **Description**: Creates a scatter plot to visualize the relationship between Electronics scores and Average grades.
+
+15. **Function Used**: `plt.title('Electronics Scores vs. Average Grade')`  
+    **Description**: Sets the title of the scatter plot.
+
+16. **Function Used**: `plt.show()` 
+    **Description**: Displays the scatter plot.
+
+17. **Function Used**: `sns.boxplot(x='Track', y='Average', hue='Gender', data=data)`   
+    **Description**: Displays a box plot showing the spread of Average grades across different tracks.
+
+18. **Function Used**: `plt.title('Distribution of Average Grades by Track and Gender')`  
+    **Description**: Sets the title of the box plot.
+
+19. **Function Used**: `plt.show()`  
+    **Description**: Displays the box plot.
 
 #### **Conclusion**:  
 The visualizations provided deeper insights into how different variables, such as Track, Gender, and Hometown, influence students' performance. Bar charts highlighted the comparative averages, while scatter and box plots revealed more nuanced relationships.
